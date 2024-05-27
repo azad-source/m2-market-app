@@ -5,19 +5,20 @@
       <a href="#about-the-project">About The Project</a>
     </li>
     <li><a href="#built-with">Built With</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#requirements">Requirements</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 
-### About The Project
+## About The Project
 
 This is streamlined, multi-page web application that tracks and displays the real-time prices of a small set of commodities.
 
-### Built With
+## Built With
 
 This project is built using the following technologies:
 
@@ -27,11 +28,11 @@ This project is built using the following technologies:
 - [styled-components](https://styled-components.com/) - A library for styling React components
 - [React Router](https://reactrouter.com/) - A library for routing in React applications
 
-### Requirements
+## Requirements
 
 To install and run this project, you need Node.js version 18.20 or higher.
 
-### Installation
+## Installation
 
 If you would like to download the code and try it for yourself:
 
@@ -44,12 +45,12 @@ If you would like to download the code and try it for yourself:
    yarn
    ```
 
-### Contact
+## License
+
+M2-Market-App is [MIT licensed](License.txt).
+
+## Contact
 
 E-mail: azad.63.mamedov@gmail.com
 
 Linkedin: https://www.linkedin.com/in/azad-mamedov/
-
-### License
-
-M2-Market-App is [MIT licensed](License.txt).

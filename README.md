@@ -44,6 +44,12 @@ If you would like to download the code and try it for yourself:
    yarn
    ```
 
+### Contact
+
+E-mail: azad.63.mamedov@gmail.com
+
+Linkedin: https://www.linkedin.com/in/azad-mamedov/
+
 ### License
 
 M2-Market-App is [MIT licensed](License.txt).

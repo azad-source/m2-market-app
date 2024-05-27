@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+<details open>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+    </li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<!-- ABOUT THE PROJECT -->
 
-Currently, two official plugins are available:
+### About The Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is streamlined, multi-page web application that tracks and displays the real-time prices of a small set of commodities.
 
-## Expanding the ESLint configuration
+### Built With
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This project is built using the following technologies:
 
-- Configure the top-level `parserOptions` property like this:
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Vite](https://vitejs.dev/) - A fast build tool for modern web projects
+- [TypeScript](https://www.typescriptlang.org/) - A strongly typed programming language that builds on JavaScript
+- [styled-components](https://styled-components.com/) - A library for styling React components
+- [React Router](https://reactrouter.com/) - A library for routing in React applications
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Requirements
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To install and run this project, you need Node.js version 18.20 or higher.
+
+### Installation
+
+If you would like to download the code and try it for yourself:
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/azad-source/m2-market-app.git
+   ```
+2. Install Yarn packages
+   ```sh
+   yarn
+   ```
+
+### License
+
+[MIT]

@@ -46,4 +46,4 @@ If you would like to download the code and try it for yourself:
 
 ### License
 
-[MIT]
+M2-Market-App is [MIT licensed](License.txt).

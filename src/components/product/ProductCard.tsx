@@ -9,16 +9,6 @@ const Wrapper = styled.div`
   color: #fff;
 `;
 
-const Copyright = styled.div`
-  padding: 30px;
-`;
-
-export default function Footer() {
-  return (
-    <Wrapper>
-      <Copyright>
-        Copyright © M2-Market-APP - {new Date().getFullYear()}
-      </Copyright>
-    </Wrapper>
-  );
+export default function ProductCard() {
+  return <Wrapper>ProductCard</Wrapper>;
 }

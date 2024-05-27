@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./reset-styles.css";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import HomePage from "./components/routes/HomePage.tsx";
 import ErrorPage from "./components/routes/ErrorPage.tsx";
-import DetailsPage from "./components/routes/DetailsPage.tsx";
+import ProductDetailPage from "./components/routes/ProductDetailPage.tsx";
 import AppRoot from "./components/routes/AppRoot.tsx";
+import { RoutePath } from "domain/routPaths.ts";
 
 const router = createBrowserRouter([
   {
@@ -14,12 +15,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <HomePage />,
-      },
-      {
-        path: "/details-page",
-        element: <DetailsPage />,
+        path: RoutePath.product,
+        element: <ProductDetailPage />,
       },
     ],
   },

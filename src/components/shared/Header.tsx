@@ -1,16 +1,48 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { HEADER_BG_COLOR, SIDE_PADDING } from "variables";
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${HEADER_BG_COLOR};
+  height: 70px;
+  padding: 0 20px;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  gap: ${SIDE_PADDING};
+`;
+
+const MenuItem = styled.div`
+  a {
+    text-decoration: none;
+    color: #fff;
+
+    &:hover {
+      color: #fcd535;
+    }
+  }
+`;
+
+interface IMenuItem {
+  link: string;
+  caption: string;
+}
+
+const menuItems: IMenuItem[] = [{ link: "/", caption: "Home Page" }];
 
 export default function Header() {
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home Page</Link>
-        </li>
-        <li>
-          <Link to="/details-page">Details Page</Link>
-        </li>
-      </ul>
-    </div>
+    <Wrapper>
+      <Menu>
+        {menuItems.map(({ link, caption }) => (
+          <MenuItem key={link}>
+            <Link to={link}>{caption}</Link>
+          </MenuItem>
+        ))}
+      </Menu>
+    </Wrapper>
   );
 }

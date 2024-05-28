@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../shared/Header";
 import Footer from "../shared/Footer";
 import styled from "styled-components";
-import { SIDE_PADDING } from "variables";
+import { MIN_CONTENT_WIDTH, SIDE_PADDING } from "variables";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,10 +10,13 @@ const Wrapper = styled.div`
   min-width: 100%;
   min-height: 100%;
   box-sizing: border-box;
+  background-color: #eee;
 `;
 
 const Content = styled.div`
-  padding: ${SIDE_PADDING};
+  padding: ${SIDE_PADDING} 0;
+  margin: 0 auto;
+  min-width: ${MIN_CONTENT_WIDTH};
 `;
 
 export default function AppRoot() {

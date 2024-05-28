@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { HEADER_BG_COLOR, SIDE_PADDING } from "variables";
+import { HEADER_BG_COLOR, MIN_CONTENT_WIDTH, SIDE_PADDING } from "variables";
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,6 +13,8 @@ const Wrapper = styled.div`
 const Menu = styled.div`
   display: flex;
   gap: ${SIDE_PADDING};
+  margin: 0 auto;
+  min-width: ${MIN_CONTENT_WIDTH};
 `;
 
 const MenuItem = styled.div`

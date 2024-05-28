@@ -4,9 +4,10 @@ import "./reset-styles.css";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./components/routes/ErrorPage.tsx";
-import ProductDetailPage from "./components/routes/ProductDetailPage.tsx";
-import AppRoot from "./components/routes/AppRoot.tsx";
+import ProductDetailsPage from "./components/routes/ProductDetailsPage.tsx";
+import ProductsPage from "./components/routes/ProductsPage.tsx";
 import { RoutePath } from "domain/routPaths.ts";
+import AppRoot from "components/routes/AppRoot.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/",
+        element: <ProductsPage />,
+      },
+      {
         path: RoutePath.product,
-        element: <ProductDetailPage />,
+        element: <ProductDetailsPage />,
       },
     ],
   },

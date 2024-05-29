@@ -1,5 +1,5 @@
 import { isWsOpened } from "helpers/webSocket.helpers";
-import { ICurrency, IOhlcData } from "models/currency.models";
+import { IOhlcData, ITickerData } from "models/currency.models";
 import { ISubscriptionParams } from "models/websocket.models";
 import { useEffect, useState } from "react";
 import { useAppStore } from "store";
@@ -15,9 +15,9 @@ export default function useWebSocketsHook(
 
   const { privateToken } = useAppStore();
 
-  const [data, setData] = useState<ICurrency | null>(null);
-
   const [ohlcData, setOhlcData] = useState<IOhlcData[]>([]);
+
+  const [tickerData, setTickerData] = useState<ITickerData[]>([]);
 
   const subscriptionMessage = {
     method: "subscribe",
@@ -37,30 +37,23 @@ export default function useWebSocketsHook(
       ws.onmessage = (event) => {
         const msg = JSON.parse(event.data);
 
-        if (Array.isArray(msg)) {
-          if (msg.includes("ticker")) {
-            const curr: ICurrency = {
-              name: msg[msg.length - 1],
-              info: msg[1],
-            };
+        if (msg.channel === "ticker") {
+          const tick = msg.data[0];
+          tick.timestamp = new Date().toISOString();
+          setTickerData((prev) => [...prev, tick]);
+        } else if (msg.channel === "ohlc") {
+          const data: IOhlcData[] = msg.data;
 
-            setData(curr);
-          }
-        } else {
-          if (msg.channel === "ohlc") {
-            const data: IOhlcData[] = msg.data;
-
-            setOhlcData((prev) => {
-              if (data.length > 1) {
-                return data;
-              } else {
-                if (prev.some((i) => i.timestamp === data[0].timestamp)) {
-                  return prev;
-                }
-                return [...prev, ...data];
+          setOhlcData((prev) => {
+            if (data.length > 1) {
+              return data;
+            } else {
+              if (prev.some((i) => i.timestamp === data[0].timestamp)) {
+                return prev;
               }
-            });
-          }
+              return [...prev, ...data];
+            }
+          });
         }
       };
 
@@ -82,5 +75,5 @@ export default function useWebSocketsHook(
     };
   }, []);
 
-  return { data, ohlcData };
+  return { ohlcData, tickerData };
 }

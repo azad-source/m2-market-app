@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { CURRENCY_CARD_WIDTH, MAIN_TEXT_COLOR } from "variables";
 import { useNavigate } from "react-router-dom";
 import { RoutePath } from "domain/routPaths";
+import { TickerDataEnum, tickerDataTitle } from "enums/ticker.enum";
+import { priceFormatter } from "utils/priceFormat";
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,7 +16,6 @@ const Wrapper = styled.div`
   color: ${MAIN_TEXT_COLOR};
   border-radius: 12px;
   width: ${CURRENCY_CARD_WIDTH};
-  min-height: 250px;
   overflow: hidden;
   box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.1);
   transition: 100ms all ease;
@@ -37,7 +38,7 @@ const Name = styled.div`
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   padding: 0 15px 15px;
 `;
 
@@ -49,6 +50,7 @@ const Param = styled.div`
 
 const ParamName = styled.div`
   font-weight: bold;
+  font-size: 16px;
 `;
 
 const ParamData = styled.div`
@@ -58,15 +60,21 @@ const ParamData = styled.div`
 `;
 
 const ParamDataItem = styled.div`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 interface IProps {
   card: ICurrency;
 }
 
+const includeInfoList: TickerDataEnum[] = [TickerDataEnum.c, TickerDataEnum.o];
+
 export default function CurrencyCard({ card }: IProps) {
   const { name, info } = card;
+
+  const filteredInfo = Object.keys(info).filter((i) =>
+    includeInfoList.includes(i as TickerDataEnum)
+  );
 
   const navigate = useNavigate();
 
@@ -78,19 +86,19 @@ export default function CurrencyCard({ card }: IProps) {
     <Wrapper onClick={openCurrencyCard}>
       <Name>{name}</Name>
       <Info>
-        {Object.keys(info).map((key) => {
+        {filteredInfo.map((key) => {
           const item = info[key as keyof ICurrencyInfo];
 
           return (
             <Param key={key}>
-              <ParamName>{key}:</ParamName>
+              <ParamName>{tickerDataTitle[key as TickerDataEnum]}:</ParamName>
               <ParamData>
                 {Array.isArray(item) ? (
-                  item.map((i, index) => (
-                    <ParamDataItem key={i + index}>{i}</ParamDataItem>
-                  ))
+                  <ParamDataItem key={item[0]}>
+                    {priceFormatter.format(+item[0])}
+                  </ParamDataItem>
                 ) : (
-                  <ParamDataItem>{item}</ParamDataItem>
+                  <ParamDataItem>{priceFormatter.format(+item)}</ParamDataItem>
                 )}
               </ParamData>
             </Param>

@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <Wrapper>
       <Copyright>
-        Copyright © M2-Market-APP - {new Date().getFullYear()}
+        Copyright © M2-Market-App - {new Date().getFullYear()}
       </Copyright>
     </Wrapper>
   );

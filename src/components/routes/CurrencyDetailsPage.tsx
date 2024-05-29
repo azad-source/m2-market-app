@@ -1,18 +1,15 @@
-import CurrencyDetails from "components/currency/CurrencyDetails/CurrencyDetails";
-import Loader from "components/shared/Loader";
-import { OhlcIntervalEnum } from "enums/ohlcInterval.enum";
 import useWebSocketsHook from "hooks/useWebSocketsHook";
-import { ICurrency } from "models/currency.models";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppStore } from "store";
 import styled from "styled-components";
-import OhlcChart from "components/shared/CurrencyChart";
+import { TickerChart } from "components/shared/CurrencyChart";
+import CurrencyDetails from "components/currency/CurrencyDetails/CurrencyDetails";
+import { useEffect, useState } from "react";
+import { ICurrency } from "models/currency.models";
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  gap: 30px;
 `;
 
 export default function CurrencyDetailsPage() {
@@ -21,40 +18,38 @@ export default function CurrencyDetailsPage() {
 
   const [currency, setCurrency] = useState<ICurrency | null>(null);
 
-  const { data, ohlcData } = useWebSocketsHook({
-    channel: "ohlc",
+  const { tickerData } = useWebSocketsHook({
+    channel: "ticker",
     symbol: [formatedCurrency],
-    interval: OhlcIntervalEnum.ONE_MINUTE,
     snapshot: true,
   });
 
-  const { privateToken, currencyPair, isLoading, fetchCurrencyByName } =
-    useAppStore();
+  const { currencyPair, fetchCurrencyByName } = useAppStore();
 
   useEffect(() => {
-    if (formatedCurrency && privateToken) {
-      fetchCurrencyByName(formatedCurrency);
-    }
-  }, [formatedCurrency, privateToken]);
+    fetchCurrencyByName(formatedCurrency);
+
+    const timeout = setInterval(() => {
+      if (formatedCurrency) {
+        fetchCurrencyByName(formatedCurrency);
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(timeout);
+    };
+  }, [formatedCurrency]);
 
   useEffect(() => {
-    if (data?.name) {
-      setCurrency(data);
-    } else if (currencyPair?.name) {
+    if (currencyPair?.name) {
       setCurrency(currencyPair);
     }
-  }, [currencyPair, data]);
+  }, [currencyPair]);
 
   return (
-    <Loader isLoading={isLoading}>
-      <Wrapper>
-        {currency && (
-          <>
-            <CurrencyDetails currency={currency} />
-            <OhlcChart pair={formatedCurrency} ohlcData={ohlcData} />
-          </>
-        )}
-      </Wrapper>
-    </Loader>
+    <Wrapper>
+      <CurrencyDetails currency={currency} />
+      <TickerChart pair={formatedCurrency} tickerData={tickerData} />
+    </Wrapper>
   );
 }

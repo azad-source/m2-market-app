@@ -1,12 +1,14 @@
 import styled, { css, keyframes } from "styled-components";
 import { ICurrency, ICurrencyInfo } from "models/currency.models";
 import { useEffect, useState } from "react";
+import { TickerDataEnum, tickerDataTitle } from "enums/ticker.enum";
+import { priceFormatter } from "utils/priceFormat";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%;
+  width: 200px;
 `;
 
 const Name = styled.div`
@@ -18,15 +20,15 @@ const Name = styled.div`
 const Info = styled.div`
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  padding: 0 15px 15px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-row-gap: 15px;
 `;
 
 const Param = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  font-size: 14px;
 `;
 
 const ParamName = styled.div`
@@ -40,36 +42,44 @@ const ParamData = styled.div`
 `;
 
 interface IProps {
-  currency: ICurrency;
+  currency: ICurrency | null;
 }
 
 export default function CurrencyDetails({ currency }: IProps) {
-  const { name, info } = currency;
-
   return (
-    <Wrapper>
-      <Name>{name}</Name>
-      <Info>
-        {Object.keys(info).map((key) => {
-          const item = info[key as keyof ICurrencyInfo];
+    <>
+      <Wrapper>
+        <Name>{currency?.name}</Name>
+        <Info>
+          {currency ? (
+            Object.keys(currency?.info).map((key) => {
+              const item = currency?.info[key as keyof ICurrencyInfo];
 
-          return (
-            <Param key={key}>
-              <ParamName>{key}:</ParamName>
-              <ParamData>
-                {Array.isArray(item) ? (
-                  item.map((i, index) => (
-                    <ParamDataItem key={i + index}>{i}</ParamDataItem>
-                  ))
-                ) : (
-                  <ParamDataItem>{item}</ParamDataItem>
-                )}
-              </ParamData>
-            </Param>
-          );
-        })}
-      </Info>
-    </Wrapper>
+              return (
+                <Param key={key}>
+                  <ParamName>
+                    {tickerDataTitle[key as TickerDataEnum]}:
+                  </ParamName>
+                  <ParamData>
+                    {Array.isArray(item) ? (
+                      <ParamDataItem key={item[0]}>
+                        {priceFormatter.format(+item[0])}
+                      </ParamDataItem>
+                    ) : (
+                      <ParamDataItem>
+                        {priceFormatter.format(+item)}
+                      </ParamDataItem>
+                    )}
+                  </ParamData>
+                </Param>
+              );
+            })
+          ) : (
+            <>Loading ...</>
+          )}
+        </Info>
+      </Wrapper>
+    </>
   );
 }
 

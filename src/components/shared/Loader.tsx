@@ -19,7 +19,7 @@ const Overlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(100, 100, 100, 0.1);
+  background-color: rgba(200, 200, 200, 0.1);
   z-index: 100;
 `;
 

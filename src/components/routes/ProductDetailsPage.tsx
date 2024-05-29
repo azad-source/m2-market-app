@@ -7,21 +7,26 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppStore } from "store";
 import styled from "styled-components";
+import OhlcChart from "components/shared/CurrencyChart";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
 
 export default function ProductDetailsPage() {
   let { productId = "" } = useParams();
   const formatedCurrency = productId?.replace("-", "/");
 
-  const { data } = useWebSocketsHook({
+  const [currency, setCurrency] = useState<ICurrency | null>(null);
+
+  const { data, ohlcData } = useWebSocketsHook({
     channel: "ohlc",
     symbol: [formatedCurrency],
-    interval: OhlcIntervalEnum.FOUR_HOUR,
+    interval: OhlcIntervalEnum.FIVE_MINUTE,
     snapshot: true,
   });
-
-  const [currency, setCurrency] = useState<ICurrency | null>(null);
 
   const { privateToken, product, isLoading, fetchProductByName } =
     useAppStore();
@@ -43,7 +48,12 @@ export default function ProductDetailsPage() {
   return (
     <Loader isLoading={isLoading}>
       <Wrapper>
-        <ProductDetails currency={currency} />
+        {currency && (
+          <>
+            <ProductDetails currency={currency} />
+            <OhlcChart pair={formatedCurrency} ohlcData={ohlcData} />
+          </>
+        )}
       </Wrapper>
     </Loader>
   );

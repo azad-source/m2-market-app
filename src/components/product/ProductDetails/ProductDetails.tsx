@@ -40,12 +40,10 @@ const ParamData = styled.div`
 `;
 
 interface IProps {
-  currency: ICurrency | null;
+  currency: ICurrency;
 }
 
 export default function ProductDetails({ currency }: IProps) {
-  if (!currency) return null;
-
   const { name, info } = currency;
 
   return (

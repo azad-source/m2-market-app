@@ -18,3 +18,17 @@ export interface ICurrency {
 export interface IFetchCurrenciesParams {
   pairs: string[];
 }
+
+export interface IOhlcData {
+  close: number;
+  high: number;
+  interval: number;
+  interval_begin: string;
+  low: number;
+  open: number;
+  symbol: string;
+  timestamp: string;
+  trades: number;
+  volume: number;
+  vwap: number;
+}

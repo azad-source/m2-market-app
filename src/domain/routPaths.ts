@@ -1,4 +1,7 @@
 export class RoutePath {
+  /** Base url */
+  public static readonly baseUrl = "/";
+
   /** Product list path */
   public static readonly products = "/products";
 

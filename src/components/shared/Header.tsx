@@ -1,3 +1,4 @@
+import { RoutePath } from "domain/routPaths";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { HEADER_BG_COLOR, MIN_CONTENT_WIDTH, SIDE_PADDING } from "variables";
@@ -33,7 +34,9 @@ interface IMenuItem {
   caption: string;
 }
 
-const menuItems: IMenuItem[] = [{ link: "/", caption: "Home Page" }];
+const menuItems: IMenuItem[] = [
+  { link: RoutePath.baseUrl, caption: "Home Page" },
+];
 
 export default function Header() {
   return (

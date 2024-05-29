@@ -11,12 +11,12 @@ import AppRoot from "components/routes/AppRoot.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: RoutePath.baseUrl,
     element: <AppRoot />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
+        path: RoutePath.baseUrl,
         element: <ProductsPage />,
       },
       {

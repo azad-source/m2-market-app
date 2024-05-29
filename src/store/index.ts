@@ -7,12 +7,15 @@ import { create } from "zustand";
 import { api, getMessageSignature } from "./apiConfig";
 import { IResponse } from "models/shared.models";
 import { IToken } from "models/token.models";
+import { IPairData } from "models/pair.models";
 
 interface IAppState {
+  pairsList: string[];
   currencyPairList: ICurrency[];
   currencyPair?: ICurrency;
   isLoading: boolean;
   privateToken?: string;
+  fetchAvailablePairs: () => void;
   fetchCurrencies: (params: IFetchCurrenciesParams) => void;
   fetchCurrencyByName: (pairName: string) => void;
   fetchPrivateToken: () => void;
@@ -20,10 +23,24 @@ interface IAppState {
 }
 
 export const useAppStore = create<IAppState>()((set) => ({
+  pairsList: [],
   currencyPairList: [],
   isLoading: false,
   setLoading: (bool) => {
     set({ isLoading: bool });
+  },
+  fetchAvailablePairs: async () => {
+    try {
+      set({ isLoading: true });
+      const res = await api.get("/0/public/AssetPairs");
+      const data: IResponse<Record<string, IPairData>> = await res.data;
+      const result = Object.keys(data.result);
+      set({ pairsList: result });
+    } catch (err) {
+      console.error("error:" + err);
+    } finally {
+      set({ isLoading: false });
+    }
   },
   fetchCurrencies: async ({ pairs }) => {
     const path = "/0/public/Ticker";

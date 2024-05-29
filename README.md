@@ -22,6 +22,18 @@ This project is built using the following technologies:
 - [React Router](https://reactrouter.com/) - A library for routing in React applications
 - [Zustand](https://docs.pmnd.rs/zustand) - A library for state-management
 
+##### Explanation of library choices
+
+- **Vite** was selected as the build tool for its high performance and fast rebuild times. Vite achieves rapid development by using ES Modules for quick dependency loading.
+
+- **TypeScript** was used to provide static typing, enhancing code reliability and reducing errors during development. TypeScript seamlessly integrates with React, making code development and refactoring easier.
+
+- **The styled-components** library was chosen for styling React components. It allows writing CSS within JavaScript files, providing better style isolation and increasing component reusability.
+
+- **React Router** was chosen for routing within the application. This library offers convenient management of routes and application state, enabling the creation of SPAs with multiple pages and transitions between them without page reloads.
+
+- **Zustand** was selected for state management within the application. It offers a simple API for creating global state with minimal boilerplate and efficiently manages state in React applications.
+
 ## :point_up: Requirements
 
 To install and run this project, you need:

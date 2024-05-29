@@ -9,7 +9,8 @@ const Wrapper = styled.div`
 `;
 
 export default function CurrenciesPage() {
-  const { currencyPairList, isLoading, fetchCurrencies } = useAppStore();
+  const { pairsList, currencyPairList, isLoading, fetchCurrencies } =
+    useAppStore();
 
   const pairs = [
     "BTC/USD",
@@ -22,7 +23,7 @@ export default function CurrenciesPage() {
 
   useEffect(() => {
     fetchCurrencies({ pairs });
-  }, []);
+  }, [pairsList]);
 
   return (
     <Loader isLoading={isLoading}>

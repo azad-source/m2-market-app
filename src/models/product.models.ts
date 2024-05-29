@@ -18,8 +18,3 @@ export interface ICurrency {
 export interface IFetchCurrenciesParams {
   pairs: string[];
 }
-
-export interface IResponse<T> {
-  error: string[];
-  result: T;
-}

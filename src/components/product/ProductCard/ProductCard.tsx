@@ -71,7 +71,7 @@ export default function ProductCard({ card }: IProps) {
   const navigate = useNavigate();
 
   const openProductCard = () => {
-    navigate(RoutePath.getProductDetailsPath(name));
+    navigate(RoutePath.getProductDetailsPath(name.replace("/", "-")));
   };
 
   return (

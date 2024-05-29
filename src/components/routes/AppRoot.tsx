@@ -3,6 +3,8 @@ import Header from "../shared/Header";
 import Footer from "../shared/Footer";
 import styled from "styled-components";
 import { MIN_CONTENT_WIDTH, SIDE_PADDING } from "variables";
+import { useAppStore } from "store";
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,6 +22,12 @@ const Content = styled.div`
 `;
 
 export default function AppRoot() {
+  const { fetchPrivateToken } = useAppStore();
+
+  useEffect(() => {
+    fetchPrivateToken();
+  }, []);
+
   return (
     <Wrapper>
       <Header />

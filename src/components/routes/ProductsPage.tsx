@@ -7,7 +7,14 @@ import styled from "styled-components";
 export default function ProductsPage() {
   const { products, isLoading, fetchProducts } = useAppStore();
 
-  const pairs = ["BTCUSD", "ETHUSD", "SOLUSD", "DOGEUSD", "SHIBUSD", "LINKUSD"];
+  const pairs = [
+    "BTC/USD",
+    "ETH/USD",
+    "SOL/USD",
+    "DOGE/USD",
+    "SHIB/USD",
+    "LINK/USD",
+  ];
 
   useEffect(() => {
     fetchProducts({ pairs });

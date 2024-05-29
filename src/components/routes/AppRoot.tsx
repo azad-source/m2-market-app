@@ -22,10 +22,12 @@ const Content = styled.div`
 `;
 
 export default function AppRoot() {
-  const { fetchPrivateToken } = useAppStore();
+  const { privateToken, fetchPrivateToken } = useAppStore();
 
   useEffect(() => {
-    fetchPrivateToken();
+    if (!privateToken) {
+      fetchPrivateToken();
+    }
   }, []);
 
   return (

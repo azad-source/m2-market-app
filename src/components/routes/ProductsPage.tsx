@@ -4,6 +4,10 @@ import { useEffect } from "react";
 import { useAppStore } from "store";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  padding-bottom: 20px;
+`;
+
 export default function ProductsPage() {
   const { products, isLoading, fetchProducts } = useAppStore();
 
@@ -19,10 +23,6 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchProducts({ pairs });
   }, []);
-
-  const Wrapper = styled.div`
-    padding-bottom: 20px;
-  `;
 
   return (
     <Loader isLoading={isLoading}>

@@ -67,7 +67,7 @@ export const useAppStore = create<IAppState>()((set) => ({
         headers: {
           "API-Sign": getMessageSignature(nonce, path, body),
         },
-        params: { pair: [pairName] },
+        params: { pair: pairName },
       });
       const data: IResponse<Record<string, ICurrencyInfo>> = await res.data;
 

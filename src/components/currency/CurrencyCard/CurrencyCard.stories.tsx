@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ProductDetails from "./ProductDetails";
+import CurrencyCard from "./CurrencyCard";
 
 const meta = {
-  title: "shared/ProductDetails",
-  component: ProductDetails,
-} satisfies Meta<typeof ProductDetails>;
+  title: "shared/CurrencyCard",
+  component: CurrencyCard,
+} satisfies Meta<typeof CurrencyCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    currency: {
+    card: {
       info: { a: [], b: [], c: [], h: [], l: [], o: "", p: [], t: [], v: [] },
       name: "ETHUSD",
     },

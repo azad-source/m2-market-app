@@ -2,30 +2,30 @@ import {
   IFetchCurrenciesParams,
   ICurrencyInfo,
   ICurrency,
-} from "models/product.models";
+} from "models/currency.models";
 import { create } from "zustand";
 import { api, getMessageSignature } from "./apiConfig";
 import { IResponse } from "models/shared.models";
 import { IToken } from "models/token.models";
 
 interface IAppState {
-  products: ICurrency[];
-  product?: ICurrency;
+  currencyPairList: ICurrency[];
+  currencyPair?: ICurrency;
   isLoading: boolean;
   privateToken?: string;
-  fetchProducts: (params: IFetchCurrenciesParams) => void;
-  fetchProductByName: (pairName: string) => void;
+  fetchCurrencies: (params: IFetchCurrenciesParams) => void;
+  fetchCurrencyByName: (pairName: string) => void;
   fetchPrivateToken: () => void;
   setLoading: (bool: boolean) => void;
 }
 
 export const useAppStore = create<IAppState>()((set) => ({
-  products: [],
+  currencyPairList: [],
   isLoading: false,
   setLoading: (bool) => {
     set({ isLoading: bool });
   },
-  fetchProducts: async ({ pairs }) => {
+  fetchCurrencies: async ({ pairs }) => {
     const path = "/0/public/Ticker";
     const nonce = Date.now() * 100;
     const body = "nonce=" + nonce + "&" + "";
@@ -43,19 +43,19 @@ export const useAppStore = create<IAppState>()((set) => ({
 
       const result = data.result;
 
-      const products: ICurrency[] = Object.keys(result).map((key) => ({
+      const currencyPairList: ICurrency[] = Object.keys(result).map((key) => ({
         name: key,
         info: result[key],
       }));
 
-      set({ products });
+      set({ currencyPairList });
     } catch (err) {
       console.error("error:" + err);
     } finally {
       set({ isLoading: false });
     }
   },
-  fetchProductByName: async (pairName: string) => {
+  fetchCurrencyByName: async (pairName: string) => {
     const path = "/0/public/Ticker";
     const nonce = Date.now() * 100;
     const body = "nonce=" + nonce + "&" + "";
@@ -73,12 +73,12 @@ export const useAppStore = create<IAppState>()((set) => ({
 
       const result = data.result;
 
-      const products: ICurrency[] = Object.keys(result).map((key) => ({
+      const currencies: ICurrency[] = Object.keys(result).map((key) => ({
         name: key,
         info: result[key],
       }));
 
-      set({ product: products[0] });
+      set({ currencyPair: currencies[0] });
     } catch (err) {
       console.error("error:" + err);
     } finally {

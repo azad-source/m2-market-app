@@ -1,5 +1,5 @@
 import { isWsOpened } from "helpers/webSocket.helpers";
-import { ICurrency, IOhlcData } from "models/product.models";
+import { ICurrency, IOhlcData } from "models/currency.models";
 import { ISubscriptionParams } from "models/websocket.models";
 import { useEffect, useState } from "react";
 import { useAppStore } from "store";

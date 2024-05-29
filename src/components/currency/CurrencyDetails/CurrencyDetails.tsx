@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { ICurrency, ICurrencyInfo } from "models/product.models";
+import { ICurrency, ICurrencyInfo } from "models/currency.models";
 import { useEffect, useState } from "react";
 
 const Wrapper = styled.div`
@@ -43,7 +43,7 @@ interface IProps {
   currency: ICurrency;
 }
 
-export default function ProductDetails({ currency }: IProps) {
+export default function CurrencyDetails({ currency }: IProps) {
   const { name, info } = currency;
 
   return (

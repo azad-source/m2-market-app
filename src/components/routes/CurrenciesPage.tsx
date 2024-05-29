@@ -1,4 +1,4 @@
-import ProductList from "components/product/ProductList/ProductList";
+import CurrencyList from "components/currency/CurrencyList/CurrencyList";
 import Loader from "components/shared/Loader";
 import { useEffect } from "react";
 import { useAppStore } from "store";
@@ -8,8 +8,8 @@ const Wrapper = styled.div`
   padding-bottom: 20px;
 `;
 
-export default function ProductsPage() {
-  const { products, isLoading, fetchProducts } = useAppStore();
+export default function CurrenciesPage() {
+  const { currencyPairList, isLoading, fetchCurrencies } = useAppStore();
 
   const pairs = [
     "BTC/USD",
@@ -21,13 +21,13 @@ export default function ProductsPage() {
   ];
 
   useEffect(() => {
-    fetchProducts({ pairs });
+    fetchCurrencies({ pairs });
   }, []);
 
   return (
     <Loader isLoading={isLoading}>
       <Wrapper>
-        <ProductList currencies={products} />
+        <CurrencyList currencies={currencyPairList} />
       </Wrapper>
     </Loader>
   );

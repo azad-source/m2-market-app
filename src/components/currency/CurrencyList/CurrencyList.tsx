@@ -1,5 +1,5 @@
-import { ICurrency } from "models/product.models";
-import ProductCard from "../ProductCard/ProductCard";
+import { ICurrency } from "models/currency.models";
+import CurrencyCard from "../CurrencyCard/CurrencyCard";
 import styled from "styled-components";
 import { CURRENCY_CARD_WIDTH } from "variables";
 
@@ -15,11 +15,11 @@ interface IProps {
   currencies: ICurrency[];
 }
 
-export default function ProductList({ currencies }: IProps) {
+export default function CurrencyList({ currencies }: IProps) {
   return (
     <Wrapper>
       {currencies.map((c) => (
-        <ProductCard card={c} key={c.name} />
+        <CurrencyCard card={c} key={c.name} />
       ))}
     </Wrapper>
   );

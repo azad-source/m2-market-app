@@ -4,8 +4,8 @@ import "./reset-styles.css";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./components/routes/ErrorPage.tsx";
-import ProductDetailsPage from "./components/routes/ProductDetailsPage.tsx";
-import ProductsPage from "./components/routes/ProductsPage.tsx";
+import CurrencyDetailsPage from "./components/routes/CurrencyDetailsPage.tsx";
+import CurrenciesPage from "./components/routes/CurrenciesPage.tsx";
 import { RoutePath } from "domain/routPaths.ts";
 import AppRoot from "components/routes/AppRoot.tsx";
 
@@ -17,11 +17,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: RoutePath.baseUrl,
-        element: <ProductsPage />,
+        element: <CurrenciesPage />,
       },
       {
-        path: RoutePath.product,
-        element: <ProductDetailsPage />,
+        path: RoutePath.currency,
+        element: <CurrencyDetailsPage />,
       },
     ],
   },

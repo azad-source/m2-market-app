@@ -1,4 +1,4 @@
-import { ICurrency, ICurrencyInfo } from "models/product.models";
+import { ICurrency, ICurrencyInfo } from "models/currency.models";
 import styled from "styled-components";
 import { CURRENCY_CARD_WIDTH, MAIN_TEXT_COLOR } from "variables";
 import { useNavigate } from "react-router-dom";
@@ -65,17 +65,17 @@ interface IProps {
   card: ICurrency;
 }
 
-export default function ProductCard({ card }: IProps) {
+export default function CurrencyCard({ card }: IProps) {
   const { name, info } = card;
 
   const navigate = useNavigate();
 
-  const openProductCard = () => {
-    navigate(RoutePath.getProductDetailsPath(name.replace("/", "-")));
+  const openCurrencyCard = () => {
+    navigate(RoutePath.getCurrencyDetailsPath(name.replace("/", "-")));
   };
 
   return (
-    <Wrapper onClick={openProductCard}>
+    <Wrapper onClick={openCurrencyCard}>
       <Name>{name}</Name>
       <Info>
         {Object.keys(info).map((key) => {

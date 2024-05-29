@@ -1,4 +1,4 @@
-import { IOhlcData } from "models/product.models";
+import { IOhlcData } from "models/currency.models";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import { ChartData } from "chart.js/auto";

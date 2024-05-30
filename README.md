@@ -4,6 +4,7 @@
 - [Built With](#built-with)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Usage](#usage)
 - [License](#license)
 - [Contact](#contact)
 
@@ -21,6 +22,7 @@ This project is built using the following technologies:
 - [styled-components](https://styled-components.com/) - A library for styling React components
 - [React Router](https://reactrouter.com/) - A library for routing in React applications
 - [Zustand](https://docs.pmnd.rs/zustand) - A library for state-management
+- [vitest](https://vitest.dev/) and [@testing-library/react](https://testing-library.com/) - Libraries for testing
 
 ##### Explanation of library choices
 
@@ -61,6 +63,19 @@ If you would like to download the code and try it for yourself:
    VITE_KRAKEN_WEBSOCKET_API_URL="wss://ws.kraken.com"
    ```
    The data is sourced from the trading platform provided by [Kraken](https://pro.kraken.com). You need to register on the platform, [create an API key](https://pro.kraken.com/app/settings/api), and insert the received key and secret into the variables in the `.env` file
+
+## :magnet: Usage
+
+1. **Start in development mode:**
+
+   ```
+   yarn dev
+   ```
+
+2. **Run the tests**:
+   ```
+   yarn test
+   ```
 
 ## :scroll: License
 

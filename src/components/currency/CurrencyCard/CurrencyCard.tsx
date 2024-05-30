@@ -84,15 +84,17 @@ export default function CurrencyCard({ card }: IProps) {
 
   return (
     <Wrapper onClick={openCurrencyCard}>
-      <Name>{name}</Name>
+      <Name data-testid="currency-card-name">{name}</Name>
       <Info>
         {filteredInfo.map((key) => {
           const item = info[key as keyof ICurrencyInfo];
 
           return (
-            <Param key={key}>
-              <ParamName>{tickerDataTitle[key as TickerDataEnum]}:</ParamName>
-              <ParamData>
+            <Param key={key} data-testid={`currency-card-param-${key}`}>
+              <ParamName data-testid="param-name">
+                {tickerDataTitle[key as TickerDataEnum]}:
+              </ParamName>
+              <ParamData data-testid="param-value">
                 {Array.isArray(item) ? (
                   <ParamDataItem key={item[0]}>
                     {priceFormatter.format(+item[0])}

@@ -8,6 +8,10 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [react(), viteTsconfigPaths()],
+    test: {
+      globals: true,
+      environment: "jsdom",
+    },
     server: {
       proxy: {
         "/0": {

@@ -8,7 +8,7 @@ export interface ICurrencyInfo {
   l: string[]; // Low [<today>, <last 24 hours>]
   o: string; // Today's opening price
   p: string[]; // Volume weighted average price [<today>, <last 24 hours>]
-  t: string[]; // Number of trades [<today>, <last 24 hours>]
+  t: number[]; // Number of trades [<today>, <last 24 hours>]
   v: string[]; // Volume [<today>, <last 24 hours>]
 }
 
